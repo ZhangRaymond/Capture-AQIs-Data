@@ -40,7 +40,7 @@ def download_data(CityList):
                   content = r.json()
                   # 获取此次更新的时间： 选择最后一条（for city），以免某些废站点的数据误导
                   if isinstance(content, dict):
-                        infor = '[Failed] token of API is out of use. Take a break'
+                        infor = '[Failed]   token of API is out of use. Take a break'
                         UPDATE = False
                         return [UPDATE,infor]
                   elif isinstance(content, list):
@@ -62,7 +62,7 @@ def download_data(CityList):
                                     return [UPDATE,infor,Full_stations,City_only]
             else:
                   UPDATE = False
-                  infor = '[Error] GET request error ({})'.format(code)
+                  infor = '[Error]    GET request error ({})'.format(code)
 #                  print('    ',infor)
                   return [UPDATE,infor]
                  
@@ -143,7 +143,7 @@ def main():
                   data = updata_to_pickle(value[2:])
                   write_to_Excel(data)
             except Exception as e:
-                  infor = '[Failed] Sucessfully downloaded, but fail to write into pickle and Excel file!'\
+                  infor = '[Failed]   Sucessfully downloaded, but fail to write into pickle and Excel file!'\
                           '\n                               {}'.format(e)
       log(infor)
       
