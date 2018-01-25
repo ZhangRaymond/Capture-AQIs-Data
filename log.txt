@@ -1,0 +1,39 @@
+     Log Time       | Informaiton
+
+2018-01-25 16:16:01 | [Canceled] Same as the previous time point, so this update has been canceled!
+2018-01-25 16:15:00 | [Success]  Updated all cities! TimePoint: 2018-01-25T15:00:00Z
+2018-01-25 16:10:41 | [Failed] Sucessfully downloaded, but fail to write into pickle and Excel file!                        reindex() got an unexpected keyword argument "axis"
+2018-01-25 16:08:53 | [Failed] Sucessfully downloaded, but fail to write into pickle and Excel file!
+2018-01-25 11:56:43 | [Failed] token of API is out of use. Take a break
+2018-01-25 11:40:34 | [Canceled] Same as the previous time point, so this update has been canceled!
+2018-01-25 11:40:20 | [Canceled] Same as the previous time point, so this update has been canceled!
+2018-01-25 11:15:17 | [Success]  Updated all cities!   TimePoint: 2018-01-25T10:00:00Z
+2018-01-25 10:55:13 | [Error] token of API is out of use. Take a break
+2018-01-25 10:35:13 | [Canceled] Same as the previous time point, so this update has been canceled!
+2018-01-25 10:15:12 | [Success]  Updated all cities!   TimePoint: 2018-01-25T09:00:00Z
+2018-01-24 22:49:42 | [Success]  Updated all cities!   TimePoint: 2018-01-24T22:00:00Z
+2018-01-24 22:29:40 | [Canceled] Same as the previous time point, so this update has been canceled!
+2018-01-24 22:12:36 | [Canceled] Same as the previous time point, so this update has been canceled!
+2018-01-24 22:12:26 | [Canceled] Same as the previous time point, so this update has been canceled!
+2018-01-24 22:12:15 | [Canceled] Same as the previous time point, so this update has been canceled!
+2018-01-24 22:12:05 | [Canceled] Same as the previous time point, so this update has been canceled!
+2018-01-24 22:11:55 | [Canceled] Same as the previous time point, so this update has been canceled!
+2018-01-24 22:11:45 | [Canceled] Same as the previous time point, so this update has been canceled!
+2018-01-24 22:11:35 | [Success]  Updated all cities!   TimePoint: 2018-01-24T21:00:00Z
+2018-01-24 22:02:33 | [Error] token of API is out of use. Take a break
+2018-01-24 22:02:21 | [Error] token of API is out of use. Take a break
+2018-01-24 22:02:12 | [Error] token of API is out of use. Take a break
+2018-01-24 22:02:04 | [Error] token of API is out of use. Take a break
+2018-01-24 22:01:44 | [Error] token of API is out of use. Take a break
+2018-01-24 22:01:26 | [Error] token of API is out of use. Take a break
+2018-01-24 22:01:23 | [Error] token of API is out of use. Take a break
+2018-01-24 22:01:08 | [Error] token of API is out of use. Take a break
+2018-01-24 15:50:39 | [Error] token of API is out of use. Take a break
+2018-01-24 15:49:11 | [Error] token of API is out of use. Take a break
+2018-01-24 15:46:59 | [Error] token of API is out of use. Take a break
+2018-01-24 15:45:06 | [Canceled] Same as the previous time point, so this update have been canceled!
+2018-01-24 15:43:50 | [Canceled] Same as the previous time point, so this update have been canceled!
+2018-01-24 15:43:42 | [Canceled] Same as the previous time point, so this update have been canceled!
+2018-01-24 15:43:33 | [Success]  Updated all cities! TimePoint: 2018-01-24T15:00:00Z
+2018-01-24 15:42:45 | [Canceled] Same as the previous time point, so this update have been canceled!
+2018-01-24 15:42:07 | [Canceled] Same as the previous time point, so this update have been canceled!
