@@ -27,23 +27,25 @@ def download_data(CityList):
       url = 'http://www.pm25.in/api/querys/aqi_details.json'
       #url = 'http://www.pm25.in/api/querys/all_cities.json'
       token = '5j1znBVAsnSf5xQyNQyq'
+      header = {'content-type': 'application/json; charset=utf-8',
+                   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0'}
       for i in range(len(CityList)):
             city = CityList[i]
 #            print(' loading: {}'.format(city))
             param  = {'city':city,'token':token}
-            r = requests.get(url, params = param)
+            r = requests.get(url, params = param,headers=header)
             code = r.status_code
             
             #判断是否通信成功
             if code == 200:
       #            print('       GET request ok')
                   content = r.json()
-                  # 获取此次更新的时间： 选择最后一条（for city），以免某些废站点的数据误导
                   if isinstance(content, dict):
                         infor = '[Failed]   token of API is out of use. Take a break'
                         UPDATE = False
                         return [UPDATE,infor]
                   elif isinstance(content, list):
+                        # 获取此次更新的时间： 选择最后一条（for city），以免某些废站点的数据误导
                         time_point = content[-1]['time_point'] 
                         # 判断是否与上次获取数据的time_point,相同则取消此次更新
                         if time_point == previous_time_point:
@@ -135,9 +137,13 @@ def main():
       CityList = {0:'guangzhou',1:'zhaoqing',2:'foshan',3:'huizhou',4:'dongguan',
                   5:'zhongshan',6:'shenzhen',7:'jiangmen',8:'zhuhai'}
       
-      value = download_data(CityList)
-      UPDATE = value[0]
-      infor = value[1]
+      try:
+            value = download_data(CityList)
+      except Exception as e:
+            infor = '[Download Error] {}'.format(e)
+            value = [False, infor]
+            
+      UPDATE, infor = value[0:2]
       if UPDATE:
             try:
                   data = updata_to_pickle(value[2:])

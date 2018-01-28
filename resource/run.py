@@ -12,6 +12,10 @@ import AQIsData
 
 while True:
       print('\nRun AQIsData.py')
-      AQIsData.main()
+      try:
+            AQIsData.main()
+      except Exception as e:
+            infor = '[Error] {}'.format(e)
+            print(infor)
       seconds = 60*20
       time.sleep(seconds) # 20 minutes
