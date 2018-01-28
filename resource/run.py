@@ -11,7 +11,7 @@ import time
 import AQIsData
 
 while True:
-      print('\nRun AQIsData.py')
+      print('Run AQIsData.py')
       try:
             AQIsData.main()
       except Exception as e:

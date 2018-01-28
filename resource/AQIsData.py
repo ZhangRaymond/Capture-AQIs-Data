@@ -124,9 +124,9 @@ def log(infor):
       with open(r'../log.txt', 'r') as f:
             content = f.readlines()[2:]
       with open(r'../log.txt', 'w') as f:
-            head = '     Log Time       | Informaiton\n'
+            head = '     Log Time       | Informaiton\n\n'
             now = str(datetime.datetime.now())[:-7]
-            update = '\n{} | {}\n'.format(now,infor)
+            update = '{} | {}\n'.format(now,infor)
             print(update)
             f.write(head+update)   
             f.writelines(content)
