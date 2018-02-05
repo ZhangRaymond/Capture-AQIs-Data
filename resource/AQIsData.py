@@ -28,7 +28,7 @@ def download_data(CityList):
       #url = 'http://www.pm25.in/api/querys/all_cities.json'
       token = '5j1znBVAsnSf5xQyNQyq'
       header = {'content-type': 'application/json; charset=utf-8',
-                   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0'}
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0'}
       for i in range(len(CityList)):
             city = CityList[i]
 #            print(' loading: {}'.format(city))
@@ -41,7 +41,7 @@ def download_data(CityList):
       #            print('       GET request ok')
                   content = r.json()
                   if isinstance(content, dict):
-                        infor = '[Failed]   token of API is out of use. Take a break'
+                        infor = '[Failed]   token of API is out of use.'
                         UPDATE = False
                         return [UPDATE,infor]
                   elif isinstance(content, list):
@@ -49,7 +49,7 @@ def download_data(CityList):
                         time_point = content[-1]['time_point'] 
                         # 判断是否与上次获取数据的time_point,相同则取消此次更新
                         if time_point == previous_time_point:
-                              infor = '[Canceled] Same as the previous time point, so this update has been canceled!'
+                              infor = '[Canceled] Same as the previous'
 #                              print(infor)
                               UPDATE = False
                               return [UPDATE,infor]
@@ -95,7 +95,7 @@ def updata_to_pickle(data):
             print(e)
             Full_his = City_his = pd.DataFrame()
             time_his = pd.Series()
-            print('                Fail to load [History.pickle], create new empty history data!')
+            print('                Fail to load [History.pickle], create a new empty history data!')
       
       Full_his = pd.concat([Full_stations, Full_his], axis=0, join='outer', ignore_index=True)
       City_his = pd.concat([City_only, City_his], axis=0, join='outer', ignore_index=True)
@@ -144,6 +144,7 @@ def main():
             value = [False, infor]
             
       UPDATE, infor = value[0:2]
+
       if UPDATE:
             try:
                   data = updata_to_pickle(value[2:])
@@ -156,5 +157,6 @@ def main():
             
 if __name__ == '__main__':
       main()
+
       
       
