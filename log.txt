@@ -1,7 +1,0 @@
-     Log Time       | Informaiton
-
-2018-02-16 14:02:42 | [Success]  Updated all cities! TimePoint: 2018-02-16T13:00:00Z
-2018-02-16 12:04:26 | [Canceled] Same as the previous
-2018-02-16 12:02:20 | [Success]  Updated all cities! TimePoint: 2018-02-16T11:00:00Z
-2018-01-28 14:17:57 | [Canceled] Same as the previous time point, so this update has been canceled!
-2018-01-28 13:45:21 | 'charmap' codec can't encode characters in position 145-146: character maps to <undefined>
