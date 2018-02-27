@@ -77,8 +77,8 @@ def updata_to_pickle(data):
            'primary_pollutant','pm2_5', 'pm2_5_24h','pm10', 'pm10_24h',
            'co', 'co_24h', 'no2', 'no2_24h', 'o3', 'o3_24h', 
            'o3_8h', 'o3_8h_24h','so2', 'so2_24h']
-      Full_stations = Full_stations.reindex_axis(columns, axis=1)
-      City_only = City_only.reindex_axis(columns, axis=1)
+      Full_stations = Full_stations.reindex(columns=columns)
+      City_only = City_only.reindex(columns=columns)
       City_only.pop('position_name')
       City_only.pop('station_code')
       time_point = City_only.iloc[0,0]
