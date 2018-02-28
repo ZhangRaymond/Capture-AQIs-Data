@@ -28,12 +28,21 @@ def download_data(CityList):
       #url = 'http://www.pm25.in/api/querys/all_cities.json'
       token = '5j1znBVAsnSf5xQyNQyq'
       header = {'content-type': 'application/json; charset=utf-8',
-                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0'}
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0',
+                  'Connection': 'close'}
+      ErrorCities = [] # 由于网络原因未能下载到数据的城市，记录之并稍后再次访问
       for i in range(len(CityList)):
             city = CityList[i]
 #            print(' loading: {}'.format(city))
             param  = {'city':city,'token':token}
-            r = requests.get(url, params = param,headers=header)
+            try:
+                r = requests.get(url, params = param,headers=header)
+            except Exception as e:
+                ErrorCities.append(city) 
+                infor = '[Request Error]  City: [{}] is unable to download. \n{}'.format(city,e)
+                log(infor)
+                print(infor)
+                continue
             code = r.status_code
             
             #判断是否通信成功
@@ -58,8 +67,10 @@ def download_data(CityList):
                               Full_stations = Full_stations.append(city_data, ignore_index=True)
                               City_only = City_only.append(city_data.iloc[-1], ignore_index=True)
                               if i == len(CityList)-1:
-                                    infor ='[Success]  Updated all cities! TimePoint: {}'.format(str(time_point))
-#                                    print(infor)
+                                    if len(ErrorCities)>0:
+                                          infor = '[Success]  Updated some of cities! TimePoint: {}'.format(str(time_point))
+                                    elif len(ErrorCities)==0:
+                                          infor = '[Success]  Updated all cities! TimePoint: {}'.format(str(time_point))
                                     UPDATE = True
                                     return [UPDATE,infor,Full_stations,City_only]
             else:
@@ -123,7 +134,6 @@ def log(infor):
             with open(filepath, 'r') as f:
                   content = f.readlines()[2:]
       except:
-            
             content = ''
       with open(filepath, 'w') as f:
             head = '     Log Time       | Informaiton\n\n'
