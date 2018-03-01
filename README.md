@@ -5,10 +5,19 @@ The script is deployed to the remote Linux server to automatically retrieve data
 ## 自动获取AQIs数据的python脚本
 通过API接口（而不是爬虫）获取实时AQI气象数据（PM2.5，PM10等），并将该脚本部署到远程Linux服务器上自动获取数据。
 
-## 网站介绍
-
+## 数据源：pm25.in
+http://pm25.in/api_doc
 ## 文件介绍
 ### CaptureAQIs.py  
-核心代码。request访问
-### run.py          
-每20分钟运行一次CaptureAQIs.py（以确保不漏掉每次更新）。执行CaptureAQIs.py时如报错中断，则将详细错误信息记录到log.txt中
+核心代码。用pm25.in官方提供的API获取AQI数据，然后将数据保存在pickle文件中以便下一步处理，执行日志保存在log.txt中。
+### run.py          
+每20分钟运行一次CaptureAQIs.py（以确保不漏掉每次更新）。执行CaptureAQIs.py时如报错中断，则将详细错误信息记录到log.txt中。
+### AQI-Demo文件夹 
+获取AQI数据的几个小Demo
+### AQIsData文件夹
+#### history.pickle
+获取的AQI数据保存在pickle文件中，方便快捷地进行下一步处理。为了防止pickle文件越来越庞大，遂将每月的数据放入一个时间文件中。
+#### thisUpdate.pickle
+本次更新的数据，主要用于下次更新时判断该时段数据是否已更新过
+#### log.txt
+程序执行时的日志文件
