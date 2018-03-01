@@ -1,8 +1,8 @@
-## Capture-AQIs-Data
+## Automatically Capture AQIs Data by Python
 Capture the real time AQIs (PM2.5, PM10, etc) through API interface rather than web crawler.  
 The script is deployed to the remote Linux server to automatically retrieve data.
 
-## 自动获取AQIs数据的python脚本
+## 用python自动获取AQIs数据
 通过API接口（而不是爬虫）获取实时AQI气象数据（PM2.5，PM10等），并将该脚本部署到远程Linux服务器上自动获取数据。
 
 ## 数据源：pm25.in
