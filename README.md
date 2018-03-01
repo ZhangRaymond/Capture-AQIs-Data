@@ -25,7 +25,7 @@ API文档详见 http://pm25.in/api_doc
 获取AQI数据的几个小Demo
 ### AQIsData文件夹
 #### history.pickle
-获取的AQI数据保存在pickle文件中，方便快捷地进行下一步处理。为了防止pickle文件越来越庞大，遂将每月的数据放入一个时间文件中。
+获取的AQI数据保存在pickle文件中，以便下一步处理。为防止pickle文件越来越庞大，运行时过分耗费内存，遂将数据按月存放。
 #### thisUpdate.pickle
 本次更新的数据，主要用于下次更新时判断该时段数据是否已更新过
 #### log.txt
