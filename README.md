@@ -8,7 +8,15 @@ The script is deployed to the remote Linux server to automatically retrieve data
 ## 数据源：pm25.in
 http://pm25.in/api_doc
 ## 文件介绍
-### CaptureAQIs.py  
+- *CaptureAQIs.py* 
+- *run.py*    
+- **AQIsData文件夹**     
+  - *history.pickle*       
+  - *thisUpdate.pickle*        
+  - *log.txt*       
+- **AQI-Demo文件夹** 
+
+### CaptureAQIs.py 
 核心代码。用pm25.in官方提供的API获取AQI数据，然后将数据保存在pickle文件中以便下一步处理，执行日志保存在log.txt中。
 ### run.py          
 每20分钟运行一次CaptureAQIs.py（以确保不漏掉每次更新）。执行CaptureAQIs.py时如报错中断，则将详细错误信息记录到log.txt中。
@@ -21,3 +29,9 @@ http://pm25.in/api_doc
 本次更新的数据，主要用于下次更新时判断该时段数据是否已更新过
 #### log.txt
 程序执行时的日志文件
+     
+       
+----
+
+Raymond Zhang   
+2018.3.1
