@@ -5,12 +5,11 @@ The script is deployed to the remote Linux server to automatically retrieve data
 ## 用python自动获取AQIs数据
 通过API接口（而不是爬虫）获取实时AQI气象数据（PM2.5，PM10等），并将该脚本部署到远程Linux服务器上自动获取数据。
 
-----
 ## 数据源：pm25.in
 该网站每小时更新一次气象数据，指标包括AQI、空气质量、主要污染物、pm2.5、pm10、CO、O3、SO2等。   
 API文档详见 http://pm25.in/api_doc
 > 声明：本项目提供的数据所有权权归原始方所有，在未获得所有方任何形式认可的情况下，请勿将本数据用作商业目的。本程序提供的数据仅用作参考，不做任何形式的承诺、担保以及负责。
----
+
 ## 文件介绍
 ``` 
 |—— CaptureAQIs.py                      // 核心脚本
