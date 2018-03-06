@@ -36,10 +36,10 @@ def download_data(CityList):
 #            print(' loading: {}'.format(city))
             param  = {'city':city,'token':token}
             try:
-                r = requests.get(url, params = param,headers=header,timeout=5)
+                r = requests.get(url, params = param,headers=header,timeout=10)
             except Exception as e:
                 ErrorCities.append(city) 
-                log('[Request Error]  City: [{}] is unable to download. \n{}'.format(city,e))
+                log('[Request Error]  City: [{}] is unable to download.  --> Error: {}'.format(city,e))
                 continue
             code = r.status_code
             #判断是否通信成功
@@ -62,16 +62,16 @@ def download_data(CityList):
                               City_only = City_only.append(city_data.iloc[-1], ignore_index=True)
             else:
                   ErrorCities.append(city) 
-                  log('[Error]    GET request error {}: {}'.format(code,city))
+                  log('[Request Error]    GET request error {}: {}'.format(code,city))
             
-      if len(ErrorCities)>0:
-            error_cities = ''
-            for city in ErrorCities:
-                  error_cities = error_cities + ' ' + city
-            log('           The following cities are not updated: {}'.format(error_cities))
-            infor = '[Success]  Updated some of cities! TimePoint: {}'.format(str(time_point))
-      elif len(ErrorCities)==0:
+
+      if len(ErrorCities)==0:
             infor = '[Success]  Updated all cities!     TimePoint: {}'.format(str(time_point))
+      elif 0<len(ErrorCities)<len(CityList):
+            infor = '[Success]  Updated some of cities! TimePoint: {}   --> Not updated: {}'.format(str(time_point,ErrorCities))
+      elif len(ErrorCities)==len(CityList):
+            log('[Failed]   No cities are updated! ')
+            return
       return [infor,[Full_stations,City_only]]
       
                  
