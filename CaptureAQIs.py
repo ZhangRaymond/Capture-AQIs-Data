@@ -68,7 +68,7 @@ def download_data(CityList):
       if len(ErrorCities)==0:
             infor = '[Success]  Updated all cities!     TimePoint: {}'.format(str(time_point))
       elif 0<len(ErrorCities)<len(CityList):
-            infor = '[Success]  Updated some of cities! TimePoint: {}   --> Not updated: {}'.format(str(time_point,ErrorCities))
+            infor = '[Success]  Updated some of cities! TimePoint: {}   --> Not updated: {}'.format(str(time_point),ErrorCities)
       elif len(ErrorCities)==len(CityList):
             log('[Failed]   No cities are updated! ')
             return
