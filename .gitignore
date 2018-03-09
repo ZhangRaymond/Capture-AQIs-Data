@@ -1,0 +1,5 @@
+# Git ignore
+
+# folder
+__pycache__/
+AQIsData/2018-02/
