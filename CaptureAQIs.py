@@ -2,14 +2,14 @@
 """
 主要功能： 
 从pm2.5in官网API接口获取实时气象数据，并写入pickle文件，同时记录日志文件。
-1. 数据将按【月】存成pickle文件（pandas.DataFrame格式），以便下一步处理
-2. 用pickle_to_Excel.py脚本可将pickle文件转成便于阅读的Excel文件
+1. 实时数据按月份并入历史数据的pickle文件（pandas.DataFrame格式）
+2. 如需要，可用pickle_to_Excel.py脚本将pickle文件转成便于阅读的Excel文件
 
 额外功能：
-检测并重新抓取上次未更新的城市数据
+抓取失败的城市，稍后自动重新抓取
 
 脚本执行方式：
-1. 直接执行 - 你可以直接执行本脚本以抓取一次数据
+1. 直接执行 - 抓取一次数据
 2. 定时执行 - 将脚本部署在Linux云主机上，用crond设定定时执行该脚本（如每小时两次）
 
 
@@ -218,7 +218,9 @@ def log(infor):
       infor: 本次记录之内容
       旧记录在后，新纪录在前（与传统方式略有不同，以便查看最新状况） 
       '''
-      filepath = r'AQIsData/2018-03.log'
+      
+      filepath = r'AQIsData/{}.log'.format(time.strftime("%Y-%m"))
+      
       # 先读入第二行后的内容
       try:
             with open(filepath, 'r') as f:
@@ -236,7 +238,7 @@ def log(infor):
 
       
 def main():
-      # 要抓取的城市，这里以广东省的9个市为例
+      # 要抓取的城市，这里以广东九市为例
       CityList = ['guangzhou','zhaoqing','foshan','huizhou','dongguan',
                   'zhongshan','shenzhen','jiangmen','zhuhai']
       

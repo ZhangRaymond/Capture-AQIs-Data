@@ -53,6 +53,7 @@ def write_to_Excel(his,update,pickle_his,pickle_update):
             print('已生成 {}  (from {})'.format(xlsx_his,pickle_his))
 
             
+# 待转换的pickle文件名
 file_his = '2018-03.pickle'
 file_update = 'thisUpdate.pickle'
 
