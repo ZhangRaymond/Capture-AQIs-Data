@@ -16,9 +16,9 @@ API文档详见 http://pm25.in/api_doc
 |—— AQI.sh                              // 部署在linux上的shell脚本
 
 |—— AQIsData文件夹                      // 数据保存在该文件夹下
-    |—— 2018.03.pickle                  // 历史数据
+    |—— 2018-03.pickle                  // 历史数据
     |—— update.pickle               // 本次更新的数据
-    |—— 2018.03.txt                         // 日志文件
+    |—— 2018-03.log                         // 日志文件
     
 |—— AQI-Demo文件夹                      //  获取AQI数据的几个小Demo
     |—— Get_AQI_from_aqicn.py
