@@ -13,12 +13,12 @@ API文档详见 http://pm25.in/api_doc
 ## 文件介绍
 ``` 
 |—— CaptureAQIs.py                      // 核心脚本
-|—— run.py                              // 程序运行入口脚本
+|—— AQI.sh                              // 部署在linux上的shell脚本
 
 |—— AQIsData文件夹                      // 数据保存在该文件夹下
-    |—— history.pickle                  // 历史数据
-    |—— thisUpdate.pickle               // 本次更新的数据
-    |—— log.txt                         // 日志文件
+    |—— 2018.03.pickle                  // 历史数据
+    |—— update.pickle               // 本次更新的数据
+    |—— 2018.03.txt                         // 日志文件
     
 |—— AQI-Demo文件夹                      //  获取AQI数据的几个小Demo
     |—— Get_AQI_from_aqicn.py
@@ -26,14 +26,14 @@ API文档详见 http://pm25.in/api_doc
     |—— GetPmData_Shanghai.py
 ```
 ### *CaptureAQIs.py* 
-核心代码。用pm25.in官方提供的API获取AQI数据。抓取到的数据保存在pickle文件（以便下一步处理），执行日志保存在log.txt。
-### *run.py*          
-每20分钟运行一次CaptureAQIs.py（以确保不漏掉每次更新）。执行CaptureAQIs.py时如报错中断，则将详细错误信息记录到log.txt中。
-### *history.pickle*
+核心代码。用pm25.in官方提供的API获取AQI数据。抓取到的数据保存在pickle文件（以便下一步处理），执行日志保存在[year]-[month].log。
+### *AQI.sh*          
+部署在linux上，运行CaptureAQIs.py。
+### *2018-03.pickle*
 获取的AQI数据保存在pickle文件中，以便下一步处理。为防止pickle文件越来越庞大，运行时过分耗费内存，遂将数据**按月存放**。
-### thisUpdate.pickle
+### update.pickle
 本次更新的数据，主要用于下次更新时判断该时段数据是否已更新过
-### *log.txt*
+### *2018-03.log*
 程序执行时的日志文件。   
 通过查看该日志数据抓取状况以及程序运行状况。
 
