@@ -26,7 +26,8 @@ API文档详见 http://pm25.in/api_doc
     |—— GetPmData_Shanghai.py
 ```
 ### *CaptureAQIs.py* 
-核心代码。用pm25.in官方提供的API获取AQI数据。抓取到的数据保存在pickle文件（以便下一步处理），执行日志保存在[year]-[month].log。
+核心代码。   
+用pm25.in官方提供的API获取AQI数据。抓取到的数据保存在pickle文件（以便下一步处理），执行日志保存在[year]-[month].log。
 ### *AQI.sh*          
 部署在linux上，运行CaptureAQIs.py。
 ### *2018-03.pickle*
@@ -36,6 +37,19 @@ API文档详见 http://pm25.in/api_doc
 ### *2018-03.log*
 程序执行时的日志文件。   
 通过查看该日志数据抓取状况以及程序运行状况。
+
+
+## 使用   
+在Linux服务器上部署crontab服务来定时执行AQI.sh，具体为  
+调用crontab -e编辑定时文件，输入：  
+```
+12,51 * * * * * [AQI.sh路径].AQI.sh  
+```
+eg：
+```
+12,51 * * * * * /home/Raymond/AQI.sh  
+```
+
 
 ----
 
