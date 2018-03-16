@@ -29,7 +29,7 @@ API文档详见 http://pm25.in/api_doc
 核心代码。   
 用pm25.in官方提供的API获取AQI数据。抓取到的数据保存在pickle文件（以便下一步处理），执行日志保存在[year]-[month].log。
 ### *AQI.sh*          
-部署在linux上，运行CaptureAQIs.py。
+部署在linux上，执行一次CaptureAQIs.py。
 ### *2018-03.pickle*
 获取的AQI数据保存在pickle文件中，以便下一步处理。为防止pickle文件越来越庞大，运行时过分耗费内存，遂将数据**按月存放**。
 ### update.pickle
@@ -40,16 +40,23 @@ API文档详见 http://pm25.in/api_doc
 
 
 ## 使用   
-在Linux服务器上部署crontab服务来定时执行AQI.sh，具体为  
-调用crontab -e编辑定时文件，输入：  
+1. 赋予AQI.sh执行权限。指令:
+```$ chmod 755 AQI.sh```
+2. 在Linux服务器上部署crontab服务来定时执行AQI.sh。 
+命令行输入：
 ```
-12,51 * * * * * [AQI.sh路径].AQI.sh  
+crontab -e
+```
+进入编辑定时文件的界面，键入：   
+```
+# 每小时的12分和51分时刻各执行一次AQI.sh（即各抓取一次数据），确保不漏掉官网每小时更新的数据
+12,51 * * * * * /AQI.sh路径/AQI.sh  
 ```
 eg：
 ```
 12,51 * * * * * /home/Raymond/AQI.sh  
 ```
-
+对于crontab命令的使用，这里不做介绍，请自行学习。
 
 ----
 
