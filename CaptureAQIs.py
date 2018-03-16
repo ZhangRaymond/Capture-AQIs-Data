@@ -90,8 +90,12 @@ def download_data(CityList):
       #                  log('GET request OK： {}'.format(city))
                         content = r.json() # request模块自带函数： 将json格式转成list格式
                         if isinstance(content, dict):
-                              log(city+': '+str(content))
-#                              log('[Failed]   token of API is out of use: {}'.format(city))
+                              string = 'Sorry，您这个小时内的API请求次数用完了'
+                              if list(content.keys())==['error'] and content['error'].startswith(string):
+                                  log('[Failed]   token of API is out of use: {}'.format(city))
+                              else:
+                                  log('[Failed]   Unknown response for {}'.format(city))
+#                              log(city+': '+str(content))
                               return
                         elif isinstance(content, list):
                               # 获取此次更新的时间： 选择最后一条（for city），以免某些废站点的数据误导
@@ -233,7 +237,10 @@ def log(infor):
             head = '     Log Time       | Informaiton\n\n' #表头
             now = str(datetime.datetime.now())[:-7]
             update = '{} | {}\n'.format(now,infor)
-            print(update)
+            try:
+                print(update)
+            except Exception as e:
+                print('print(update) occurs an error! --> {}'.format(e))
             f.write(head+update)   # 添加日志时间并写入
             f.writelines(content)  # 然后将之前的旧日志附在后面
 
@@ -245,7 +252,7 @@ def main():
       
       # 伪装： 在Linux中采用crond方式定时抓数据时，将按整分钟执行，容易被服务器reject，故延迟一随机时间
       # 直接执行该脚本则无需time.sleep()
-      time.sleep(random.uniform(1, 59))
+      time.sleep(random.uniform(1, 19))
       
       data = download_data(CityList)
       
