@@ -90,7 +90,8 @@ def download_data(CityList):
       #                  log('GET request OK： {}'.format(city))
                         content = r.json() # request模块自带函数： 将json格式转成list格式
                         if isinstance(content, dict):
-                              log('[Failed]   token of API is out of use: {}'.format(city))
+                              log(city+': '+str(content))
+#                              log('[Failed]   token of API is out of use: {}'.format(city))
                               return
                         elif isinstance(content, list):
                               # 获取此次更新的时间： 选择最后一条（for city），以免某些废站点的数据误导
