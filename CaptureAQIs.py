@@ -68,7 +68,7 @@ def download_data(CityList):
       ErrorCities = [] # 由于网络等原因未能下载到数据的城市，记录之并稍后再次更新
       update_cities_for_pre = [] # 此次更新的上次未更新之城市
       ErrorCities_for_pre = []   # # 此次未能更新的上次未更新之城市
-      
+
       for city in CityList:
             # 【判断时间戳及未更新城市】 如果是上次的时间戳且该城市已更新过，则跳过
             if NEW_TIME_POINT == False and city not in preErrorCities:
@@ -119,8 +119,9 @@ def download_data(CityList):
                                           city_data = pd.DataFrame(content).fillna('')
                                           Full_stations = Full_stations.append(city_data, ignore_index=True)
                                           City_only = City_only.append(city_data.iloc[-1], ignore_index=True)
-                                          update_cities_for_pre.append(city)
-                                    
+                                          if city in preErrorCities:
+                                              update_cities_for_pre.append(city)
+
                   # 未访问成功
                   else:
                         if NEW_TIME_POINT == True:
@@ -128,7 +129,7 @@ def download_data(CityList):
                         else:
                               ErrorCities_for_pre.append(city)
                         log('[Request Error]    GET request error {}: {}'.format(code,city))
-                  
+
       # 更新新时间点的数据
       if NEW_TIME_POINT == True:
             if len(ErrorCities)==0:
@@ -136,10 +137,10 @@ def download_data(CityList):
             elif 0<len(ErrorCities)<len(CityList):
                   infor = '[Success]  Updated some of cities!   TimePoint: {}   --> Not updated: {}'.format(str(time_point),ErrorCities)
             elif len(ErrorCities)==len(CityList):
-                  log('[Failed]   No cities are updated! ')
+                  log('[Failed]   No cities are updated!')
                   return
             return [infor,[Full_stations,City_only,ErrorCities]]
-      
+
       # 更新上次未更新的城市
       elif len(preErrorCities) != 0:
             if len(update_cities_for_pre) == 0:
@@ -150,9 +151,9 @@ def download_data(CityList):
             elif len(update_cities_for_pre) == len(preErrorCities):
                   infor = '[Success]  Updated all previous not-updated cities!     TimePoint: {}   Updated: {}'.format(str(time_point),update_cities_for_pre)
             return [infor,[Full_stations,City_only,ErrorCities_for_pre]]
-                 
-      
-      
+
+
+
 def update_to_pickle(data):
       Full_stations,City_only,ErrorCities = data
       # 改变列顺序，使之更易读
@@ -244,7 +245,7 @@ def log(infor):
             f.write(head+update)   # 添加日志时间并写入
             f.writelines(content)  # 然后将之前的旧日志附在后面
 
-      
+
 def main():
       # 要抓取的城市，这里以广东九市为例
       CityList = ['guangzhou','zhaoqing','foshan','huizhou','dongguan',
@@ -261,12 +262,11 @@ def main():
             infor, updateData = data
             update_to_pickle(updateData)
             log(infor)
-            
-      
+
+
 if __name__ == '__main__':      
       try:
             main()
       except Exception:
             log('[Error] \n{}'.format(traceback.format_exc()))
-      
-      
+
