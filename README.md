@@ -14,11 +14,13 @@ API文档详见 http://pm25.in/api_doc
 ``` 
 |—— CaptureAQIs.py                      // 核心脚本
 |—— AQI.sh                              // 部署在linux上的shell脚本
+|—— backup.sh                           // 定期备份数据
+|—— backup.log                          // 备份日志
 
-|—— AQIsData文件夹                      // 数据保存在该文件夹下
+|—— AQIsData文件夹                       // 数据保存在该文件夹下
     |—— 2018-03.pickle                  // 历史数据
-    |—— update.pickle               // 本次更新的数据
-    |—— 2018-03.log                         // 日志文件
+    |—— update.pickle                   // 本次更新的数据
+    |—— 2018-03.log                     // 日志文件
     
 |—— AQI-Demo文件夹                      //  获取AQI数据的几个小Demo
     |—— Get_AQI_from_aqicn.py
@@ -49,7 +51,7 @@ crontab -e
 ```
 进入编辑定时文件的界面，键入：   
 ```
-# 每小时的12分和51分时刻各执行一次AQI.sh（即各抓取一次数据），确保不漏掉官网每小时更新的数据
+# 每小时的12分和51分时刻各执行一次AQI.sh（抓取一次数据），确保不漏掉官网每小时更新的数据
 12,51 * * * * * /AQI.sh路径/AQI.sh  
 ```
 eg：
