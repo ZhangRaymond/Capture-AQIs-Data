@@ -16,7 +16,7 @@ def check_file(file):
             i = 'y'
       return i
 
-def write_to_Excel(his,update,pickle_his,pickle_update):
+def write_to_Excel():
 #      Full_stations,City_only,time_point = update
 #      Full_his,City_his,time_his = his
 
@@ -26,8 +26,8 @@ def write_to_Excel(his,update,pickle_his,pickle_update):
       Full_stations = update.full 
       City_only = update.city
       
-      xlsx_update = pickle_update[:-7] + '.xlsx'  #更换后缀
-      xlsx_his = pickle_his[:-7] + '.xlsx'
+      xlsx_update = file_update[:-7] + '.xlsx'  #更换后缀
+      xlsx_his = file_his[:-7] + '.xlsx'
       
       
       i = check_file(xlsx_update)
@@ -38,7 +38,7 @@ def write_to_Excel(his,update,pickle_his,pickle_update):
             Full_stations.to_excel(writer, sheet_name ='All Stations')
             City_only.to_excel(writer, sheet_name ='City Only')
             writer.save()
-            print('已生成 {}  (from {})'.format(xlsx_update,pickle_update))
+            print('已生成 {}  (from {})'.format(xlsx_update,file_update))
       
       i = check_file(xlsx_his)
       if i.lower() == 'n':
@@ -50,11 +50,11 @@ def write_to_Excel(his,update,pickle_his,pickle_update):
             City_his.to_excel(writer, sheet_name ='City Only')
             time_his.to_excel(writer, sheet_name ='Update Log')
             writer.save()
-            print('已生成 {}  (from {})'.format(xlsx_his,pickle_his))
+            print('已生成 {}  (from {})'.format(xlsx_his,file_his))
 
             
 # 待转换的pickle文件名
-file_his = '2018-03.pickle'
+file_his = '2018-04.pickle'
 file_update = 'update.pickle'
 
 his = pd.read_pickle(file_his)   # [Full_his, City_his, time_his]
@@ -62,5 +62,5 @@ print('{}读取成功'.format(file_his))
 update = pd.read_pickle(file_update) # [Full_stations, City_only, time_point]
 print('{}读取成功'.format(file_update))
 
-write_to_Excel(his,update,file_his,file_update)
+write_to_Excel()
 
