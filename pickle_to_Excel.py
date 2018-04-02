@@ -55,7 +55,7 @@ def write_to_Excel(his,update,pickle_his,pickle_update):
             
 # 待转换的pickle文件名
 file_his = '2018-03.pickle'
-file_update = 'thisUpdate.pickle'
+file_update = 'update.pickle'
 
 his = pd.read_pickle(file_his)   # [Full_his, City_his, time_his]
 print('{}读取成功'.format(file_his))
